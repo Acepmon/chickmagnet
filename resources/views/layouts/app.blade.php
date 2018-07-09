@@ -15,14 +15,14 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -34,7 +34,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item {{ request()->is('home') ? 'active' : null }}">
+                            <a class="nav-link" href="{{ route('home') }}">Home</a>
+                        </li>
+                        @guest
+                        @else
+                            <li class="nav-item {{ request()->is('articles') ? 'active' : null }}">
+                                <a class="nav-link" href="{{ route('articles') }}">Articles</a>
+                            </li>
+                        @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
